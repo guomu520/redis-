@@ -93,6 +93,7 @@ web:
 查看当前状态命令 
 nc 127.0.0.1 4201
 返回值说明
+ ```
 {
     "service": "nutcracker",
     "source": "dfz-goods-php-01.meilishuo.com",#hostname
@@ -137,5 +138,6 @@ nc 127.0.0.1 4201
         ...
     }
 }
+ ```
 
 
