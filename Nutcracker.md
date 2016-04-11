@@ -73,3 +73,69 @@ web:
     - 172.16.0.226:11211:1
     - 172.16.0.54:11211:1
 ```    
+5、启动以及监控说明
+先看下各参数说明
+-h 帮助
+-V 版本
+-t 测试配置文件
+-d 作为守护进程运行
+-D 打印统计描述
+-v 打印日志级别
+-o 设置日志文件
+-c 配置文件
+-s 监控端口
+-a 设置统计监测
+-i 在毫秒设定统计聚集间隔（默认：30000毫秒）
+-p 设置PID文件
+-m buf大小
+如下例如
+/home/service/nutcracker/bin/nutcracker -s 4204 -c /home/work/conf/nut/nutcracker4.yml -p /home/work/nutcracker/nutcracker4.pid -o /home/work/nutcracker/logs/nutcracker4.log -v 4
+查看当前状态命令 
+nc 127.0.0.1 4201
+返回值说明
+{
+    "service": "nutcracker",
+    "source": "dfz-goods-php-01.meilishuo.com",#hostname
+    "version": "0.2.4",
+    "uptime": 1687141,#服务已经启动的时间（单位：秒）√
+    "timestamp": 1448939464,#当前时间戳 √
+    "web": {#配置名称
+        "client_eof": 10552370,
+        "client_err": 0,#客户端连接错误次数
+        "client_connections": 2,#当前活跃的客户端连接数
+        "server_ejects": 0,#后端服务被踢出次数 √
+        "forward_error": 1,#转发错误次数 √
+        "fragments": 157341762,
+        "10.5.12.67": {
+            "server_eof": 0,
+            "server_err": 0,#服务端连接错误次数
+            "server_timedout": 0,#因连接超时的服务端错误次数
+            "server_connections": 200,#当前活跃的服务端连接数
+            "requests": 15151080,#已请求次数
+            "request_bytes": 922022844,#已请求字节数
+            "responses": 15151080,#已响应次数
+            "response_bytes": 15929562310,#已相应字节数
+            "in_queue": 0,
+            "in_queue_bytes": 0,
+            "out_queue": 0,
+            "out_queue_bytes": 0
+        },
+        "10.5.12.68": {
+            "server_eof": 0,
+            "server_err": 0,
+            "server_timedout": 0,
+            "server_connections": 200,
+            "requests": 13543421,
+            "request_bytes": 843329330,
+            "responses": 13543421,
+            "response_bytes": 11472952692,
+            "in_queue": 0,
+            "in_queue_bytes": 0,
+            "out_queue": 0,
+            "out_queue_bytes": 0
+        },
+        ...
+    }
+}
+
+
